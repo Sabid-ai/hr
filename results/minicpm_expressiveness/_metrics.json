@@ -1,0 +1,128 @@
+{
+  "model_id": "MiniCPM-O-4.5-9B",
+  "endpoint": "wss://minicpmo45.modelbest.cn/v1/realtime?mode=chat",
+  "mode": "realtime WebSocket, chat mode (turn-based), tts.enabled=true",
+  "reference_audio_file": "hr/Kuon_b-1_part01.wav",
+  "reference_audio": {
+    "source_sample_rate": 48000,
+    "source_channels": 1,
+    "source_bit_depth": 16,
+    "source_duration_s": 54.45,
+    "sent_sample_rate": 16000,
+    "sent_duration_s": 8.0,
+    "sent_first_n_seconds_only": true
+  },
+  "output_sample_rate": 24000,
+  "results": [
+    {
+      "test": "Excited",
+      "output": "results/minicpm_expressiveness/01_excited.wav",
+      "status": "success",
+      "audio_duration_s": 4.44,
+      "ttfa_s": 29.65,
+      "total_time_s": 32.79,
+      "text": "\"NO WAY! You actually did that?! That is INSANE!\"\"NO WAY! You actually did that?! That is INSANE!\"",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Annoyed",
+      "output": "results/minicpm_expressiveness/02_annoyed.wav",
+      "status": "success",
+      "audio_duration_s": 7.48,
+      "ttfa_s": 37.27,
+      "total_time_s": 42.19,
+      "text": "Ugh... seriously? You pressed the button again? You absolute menace.Ugh... seriously? You pressed the button again? You absolute menace.",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Soft / Mischievous",
+      "output": "results/minicpm_expressiveness/03_soft_mischievous.wav",
+      "status": "success",
+      "audio_duration_s": 5.32,
+      "ttfa_s": 37.58,
+      "total_time_s": 41.17,
+      "text": "Okay... come here. I have a tiny secret. Don't tell anyone, okay?Okay... come here. I have a tiny secret. Don't tell anyone, okay?",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Panic",
+      "output": "results/minicpm_expressiveness/04_panic.wav",
+      "status": "success",
+      "audio_duration_s": 5.24,
+      "ttfa_s": 40.22,
+      "total_time_s": 43.79,
+      "text": "WAIT! Why is there a creeper behind me?! RUN, RUN, RUN!WAIT! Why is there a creeper behind me?! RUN, RUN, RUN!",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Sad / Soft",
+      "output": "results/minicpm_expressiveness/05_sad_soft.wav",
+      "status": "success",
+      "audio_duration_s": 5.2,
+      "ttfa_s": 25.0,
+      "total_time_s": 28.29,
+      "text": "Oh... you actually remembered. That's... really sweet.Oh... you actually remembered. That's... really sweet.",
+      "error": null,
+      "retries": 1
+    },
+    {
+      "test": "Sarcastic",
+      "output": "results/minicpm_expressiveness/06_sarcastic.wav",
+      "status": "success",
+      "audio_duration_s": 7.32,
+      "ttfa_s": 30.4,
+      "total_time_s": 35.52,
+      "text": "Wow. Amazing. Truly genius. I can't believe I witnessed that with my own digital eyes.Wow. Amazing. Truly genius. I can't believe I witnessed that with my own digital eyes.",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Hype",
+      "output": "results/minicpm_expressiveness/07_hype.wav",
+      "status": "success",
+      "audio_duration_s": 3.96,
+      "ttfa_s": 35.94,
+      "total_time_s": 40.31,
+      "text": "CHAT! WE ARE SO BACK! LET'S GOOOOOO!CHAT! WE ARE SO BACK! LET'S GOOOOOO!",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Laughing",
+      "output": "results/minicpm_expressiveness/08_laughing.wav",
+      "status": "success",
+      "audio_duration_s": 6.12,
+      "ttfa_s": 32.35,
+      "total_time_s": 36.3,
+      "text": "HAHAHA! Oh my god, I can't\u2014 I actually can't believe you just did that!HAHAHA! Oh my god, I can't\u2014 I actually can't believe you just did that!",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Whisper",
+      "output": "results/minicpm_expressiveness/09_whisper.wav",
+      "status": "success",
+      "audio_duration_s": 5.0,
+      "ttfa_s": 39.65,
+      "total_time_s": 43.78,
+      "text": "Okay... shhh. Don't let them hear us. I think we're about to get away with this.Okay... shhh. Don't let them hear us. I think we're about to get away with this.",
+      "error": null,
+      "retries": 1
+    },
+    {
+      "test": "Rapid Emotion Change",
+      "output": "results/minicpm_expressiveness/10_rapid_emotion_change.wav",
+      "status": "success",
+      "audio_duration_s": 5.64,
+      "ttfa_s": 30.72,
+      "total_time_s": 34.41,
+      "text": "Wait, that's actually kind of cute... AWW\u2014WHAT?! WHY IS IT ON FIRE?!Wait, that's actually kind of cute... AWW\u2014WHAT?! WHY IS IT ON FIRE?!",
+      "error": null,
+      "retries": 0
+    }
+  ]
+}

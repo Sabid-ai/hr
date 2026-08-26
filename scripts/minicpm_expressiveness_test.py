@@ -19,6 +19,7 @@ import asyncio
 import base64
 import json
 import os
+import subprocess
 import sys
 import time
 import wave
@@ -29,7 +30,7 @@ import websockets
 
 WS_URL = "wss://minicpmo45.modelbest.cn/v1/realtime?mode=chat"
 MODEL_ID = "MiniCPM-O-4.5-9B"
-REF_WAV = "hr/Kuon_b-1_part01.wav"
+REF_WAV = 'Kuon_b-1_part01 - segment 2.mp3'  # 44.1 kHz mono, 7.52 s
 OUT_DIR = "results/minicpm_expressiveness"
 METRICS_PATH = os.path.join(OUT_DIR, "_metrics.json")
 
@@ -168,25 +169,55 @@ TESTS = [
 
 
 def load_ref_audio_16k_f32_b64(path: str, max_seconds: float = 8.0) -> tuple[str, dict]:
-    """Load reference WAV, resample to 16 kHz mono float32, cap length,
-    return base64 + info.
+    """Load reference audio (WAV or MP3), resample to 16 kHz mono float32,
+    cap length, return base64 + info.
+
+    MP3 inputs are decoded to a temporary 16 kHz mono 16-bit WAV via ffmpeg,
+    which must be available on PATH.
 
     The public endpoint fails on references longer than ~8 s (server-side
-    turn deadline), so we send the first `max_seconds` of the file unchanged.
+    turn deadline), so we send at most `max_seconds` of the file.
     """
+    tmp_wav = ".ref_converted_tmp.wav"
+    use_tmp = False
+    if not path.lower().endswith(".wav"):
+        # run ffprobe for original info
+        probe = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "a:0",
+             "-show_entries", "stream=sample_rate,channels,duration",
+             "-show_entries", "format=duration",
+             "-of", "json", path],
+            capture_output=True, text=True)
+        probe_info = json.loads(probe.stdout)
+        try:
+            sr = int(probe_info["streams"][0]["sample_rate"])
+            nch = int(probe_info["streams"][0]["channels"])
+            dur_src = float(probe_info["streams"][0].get("duration", probe_info["format"]["duration"]))
+        except Exception:
+            sr = 44100
+            nch = 1
+            dur_src = 7.52
+        # convert to 16 kHz mono pcm_s16le wav
+        subprocess.run(["ffmpeg", "-y", "-i", path,
+                        "-ar", "16000", "-ac", "1",
+                        "-c:a", "pcm_s16le", tmp_wav],
+                       capture_output=True, check=True)
+        path = tmp_wav
+        use_tmp = True
     with wave.open(path, "rb") as w:
         sr = w.getframerate()
         nch = w.getnchannels()
         sw = w.getsampwidth()
         frames = w.getnframes()
         raw = w.readframes(frames)
+        if not use_tmp:
+            dur_src = frames / sr
     assert sw == 2, f"expected 16-bit PCM, got sampwidth={sw}"
     x = np.frombuffer(raw, dtype=np.int16).astype(np.float32)
     if nch > 1:
         x = x.reshape(-1, nch).mean(axis=1)
-    dur_src = frames / sr
-    # 48 kHz -> 16 kHz (upsample 1, downsample 3)
-    y = resample_poly(x, 1, 3) if sr == 48000 else resample_poly(x, 16000, sr)
+    # resample_poly from 16 kHz to 16 kHz (identity)
+    y = x.copy()
     trimmed = False
     if len(y) > int(16000 * max_seconds):
         y = y[: int(16000 * max_seconds)]

@@ -68,6 +68,61 @@
       "text": "\"Oh... you actually remembered. That's... really sweet.\"\"Oh... you actually remembered. That's... really sweet.\"",
       "error": null,
       "retries": 0
+    },
+    {
+      "test": "Sarcastic",
+      "output": "results/minicpm_expressiveness/06_sarcastic.wav",
+      "status": "success",
+      "audio_duration_s": 7.36,
+      "ttfa_s": 29.32,
+      "total_time_s": 36.16,
+      "text": "Wow. Amazing. Truly genius. I can't believe I witnessed that with my own digital eyes.Wow. Amazing. Truly genius. I can't believe I witnessed that with my own digital eyes.",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Hype",
+      "output": "results/minicpm_expressiveness/07_hype.wav",
+      "status": "success",
+      "audio_duration_s": 4.56,
+      "ttfa_s": 15.28,
+      "total_time_s": 20.53,
+      "text": "CHAT! WE ARE SO BACK! LET'S GOOOOOO!CHAT! WE ARE SO BACK! LET'S GOOOOOO!",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Laughing",
+      "output": "results/minicpm_expressiveness/08_laughing.wav",
+      "status": "success",
+      "audio_duration_s": 6.04,
+      "ttfa_s": 29.62,
+      "total_time_s": 34.86,
+      "text": "HAHAHA! Oh my god, I can't\u2014 I actually can't believe you just did that!HAHAHA! Oh my god, I can't\u2014 I actually can't believe you just did that!",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Whisper",
+      "output": "results/minicpm_expressiveness/09_whisper.wav",
+      "status": "success",
+      "audio_duration_s": 4.76,
+      "ttfa_s": 25.82,
+      "total_time_s": 29.9,
+      "text": "Okay... shhh. Don't let them hear us. I think we're about to get away with this.Okay... shhh. Don't let them hear us. I think we're about to get away with this.",
+      "error": null,
+      "retries": 0
+    },
+    {
+      "test": "Rapid Emotion Change",
+      "output": "results/minicpm_expressiveness/10_rapid_emotion_change.wav",
+      "status": "success",
+      "audio_duration_s": 6.4,
+      "ttfa_s": 17.61,
+      "total_time_s": 21.88,
+      "text": "Wait, that's actually kind of cute... AWW\u2014WHAT?! WHY IS IT ON FIRE?!Wait, that's actually kind of cute... AWW\u2014WHAT?! WHY IS IT ON FIRE?!",
+      "error": null,
+      "retries": 0
     }
   ]
 }
